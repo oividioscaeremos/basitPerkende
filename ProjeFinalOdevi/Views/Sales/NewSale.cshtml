@@ -1,0 +1,29 @@
+﻿@model ProjeFinalOdevi.ViewModels.SalesNew
+@{
+    ViewBag.Title = "SATIŞ EKLE";
+
+}
+<div class="col-12">
+    <div class="card mt-5">
+        <div class="card-body">
+            <h4 class="header-title">SATIŞ EKLE</h4>
+            @using (Html.BeginForm())
+            {
+                <div class="form-group">
+                    @*<label for="example-text-input" class="col-form-label">Firma Adı:</label>*@
+                    @Html.LabelFor(u => u.stocks, new { @class = "col-form-label" })
+                    @Html.DropDownListFor(u => u.selectedStockID, new SelectList(Model.stocks, "StockID", "Description", 1), "Bir ürün seçiniz. (Boş bırakılamaz.)", new { @class = "custom-select" })
+                    @Html.ValidationMessageFor(u => u.stocks)
+                </div>
+                <div class="form-group">
+                    <label for="example-text-input" class="col-form-label">Satış Miktarı:</label>
+                    @Html.TextBoxFor(u => u.quantity, new { @class = "form-control", @id = "quantity" })
+                    @Html.ValidationMessageFor(u => u.quantity)
+                </div>
+                <button type="submit" class="btn btn-flat btn-primary btn-lg btn-block" style="font-weight:bolder">SATIŞ EKLE</button>
+            }
+            <br />
+            <center>veya @Html.RouteLink("Vazgeç", "Sales", new { id = @Model.user_id })</center>
+        </div>
+    </div>
+</div>

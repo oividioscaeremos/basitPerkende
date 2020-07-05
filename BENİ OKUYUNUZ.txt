@@ -1,0 +1,8 @@
+Cem hocam merhabalar,
+
+Proje tamamiyle çalışır durumdadır.
+Projede kaydolma kısmında "admin" kullanıcı adı seçilirse "admin" rolüyle giriş yapar, farklı kullanıcı adlarıyla kaydolunursa  normal kullanıcı gibi ekran görüntüleme yapar.
+
+Migrator için CMD kodu migrator sınıfının altında yer almakta.
+
+Teşekkürler.

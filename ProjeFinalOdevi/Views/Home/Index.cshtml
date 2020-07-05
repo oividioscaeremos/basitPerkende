@@ -1,0 +1,28 @@
+﻿@model ProjeFinalOdevi.ViewModels.PrintReportViewModel
+
+@{
+    ViewBag.Title = "ANA SAYFA";
+    var user = Database.Session.Query<ProjeFinalOdevi.Models.User>().FirstOrDefault(u => u.Username == HttpContext.Current.User.Identity.Name);
+
+}
+
+<div style="margin:0 auto;" class="col-lg-6 mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="header-title">SATIŞ RAPORU OLUŞTUR</h4>
+            @using (Html.BeginForm("PrintPartialViewToPdf", "Home", FormMethod.Post))
+            {
+                <div style="width: 40%;">
+                    @Html.DisplayNameFor(s => s.reportFrom)
+                    @Html.TextBoxFor(u => u.reportFrom, new { @class = "form-control", type = "date", @id = "datetimepicker6" })
+                </div>
+                <div style="width: 40%;">
+                    @Html.DisplayNameFor(e => e.reportTo)
+                    @Html.TextBoxFor(u => u.reportTo, new { @class = "form-control", type = "date", @id = "datetimepicker7" })
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary btn-lg btn-block">OLUŞTUR</button>
+            }
+        </div>
+    </div>
+</div>

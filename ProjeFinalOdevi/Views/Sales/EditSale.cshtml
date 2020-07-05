@@ -1,0 +1,25 @@
+﻿@model ProjeFinalOdevi.ViewModels.SalesEdit
+@{
+    ViewBag.Title = "SATIŞ DÜZENLE";
+
+}
+<div class="col-12">
+    <div class="card mt-5">
+        <div class="card-body">
+            <h4 class="header-title">SATIŞ EKLE</h4>
+            @using (Html.BeginForm())
+            {
+                <div class="form-group">
+                    <label for="example-text-input" class="col-form-label">Satış Miktarı:</label>
+                    @Html.TextBoxFor(u => u.quantity, new { @class = "form-control", @id = "quantity" })
+                    @Html.ValidationMessageFor(u => u.quantity)
+                </div>
+                @Html.TextBoxFor(u => u.sale_id, new { style = "height:40px !important; display: none; ", @class = "form-control" })
+
+                <button type="submit" class="btn btn-flat btn-primary btn-lg btn-block" style="font-weight:bolder">SATIŞI GÜNCELLE</button>
+            }
+            <br />
+            <center>veya @Html.RouteLink("Vazgeç", "Sales", new { id = @Model.user_id })</center>
+        </div>
+    </div>
+</div>

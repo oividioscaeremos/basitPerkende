@@ -1,0 +1,88 @@
+﻿@using System.Web.Optimization
+@model ProjeFinalOdevi.ViewModels.PrintReportViewModel
+@{
+    Layout = null;
+    int salesCount = Model.allSales.Count();
+    int sum = 0;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+@Styles.Render("~/projStyles")
+<body>
+
+    <div class="col-12 mt-5" style="margin:0 auto;">
+        <div class="card-body">
+            <div class="invoice-area">
+                <div class="invoice-head">
+                    <div class="row">
+                        <div class="iv-left col-6">
+                            <span>RAPOR</span>
+                        </div>
+                        <div class="iv-right col-6 text-md-right">
+                            <span>STOK PERAKENDE</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="invoice-address">
+                            <h3>SATIŞ RAPORU</h3>
+                            <h5>@Model.currUser.adSoyad</h5>
+                            <h6>@Model.currUser.addressMah</h6>
+                            <h6>@Model.currUser.addRessCadSk</h6>
+                            <h6>@Model.currUser.addressIlce/@Model.currUser.addressIl.ToUpper()</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-md-right">
+                        <ul class="invoice-date">
+                            <li><h6>Rapor Tarihi : @DateTime.Now.ToString("dd/MM/yyyy")</h6></li>
+                            <li><h6>Rapor İçeriği : @Model.reportFrom.ToString("dd/MM/yyyy") - @Model.reportTo.ToString("dd/MM/yyyy")</h6></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="invoice-table table-responsive mt-5">
+                    <table class="table table-bordered table-hover text-right">
+                        <thead>
+                            <tr class="text-capitalize">
+                                <th class="text-center" style="width: 5%;"><h6>@Html.DisplayNameFor(m => m.date)</h6></th>
+                                <th class="text-center" style="width: 5%;"><h6>@Html.DisplayNameFor(m => m.desc)</h6></th>
+                                <th class="text-center" style="width: 20%; min-width: 130px;"><h6>@Html.DisplayNameFor(m => m.quantity)</h6></th>
+                                <th class="text-center"><h6>@Html.DisplayNameFor(m => m.sale_sum)</h6></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var sale in Model.allSales)
+                            {
+                                <tr style="">
+                                    <th style="text-align:center; vertical-align:middle;" scope="row"><h6>@sale.date</h6></th>
+                                    <th style="text-align:center; vertical-align:middle;" scope="row"><h6>@{
+                                        var desc = Database.Session.Query<ProjeFinalOdevi.Models.Stock>()
+                                            .Where(s => s.StockId == sale.stock_id.StockId)
+                                            .FirstOrDefault().Description;
+
+                                    }@desc</h6></th>
+                                    <td style="text-align:center; vertical-align:middle;"><h6>@sale.quantity</h6></td>
+                                    <td style="text-align:center; vertical-align:middle;"><h6>@sale.sale_sum</h6></td>
+                                </tr>
+                                sum += sale.sale_sum;
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">TOPLAM:</td>
+                                    <td style="text-align:center;">
+                                        <h6>+@sum</h6>
+</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/projScripts")
+</body>
+</html>

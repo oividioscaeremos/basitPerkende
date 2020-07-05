@@ -1,0 +1,113 @@
+﻿@model ProjeFinalOdevi.ViewModels.AuthRegister
+
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "KAYDOL";
+    Layout = null;
+}
+
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="content/images/icon/favicon.ico">
+    @Styles.Render("~/projStyles")
+</head>
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- login area start -->
+    <div class="login-area login-s2">
+        <div class="container">
+            <div class="login-box ptb--100">
+                @using (Html.BeginForm())
+                {
+                    <form>
+                        <div class="login-form-head">
+                            <h4>KAYDOL</h4>
+                            <p>Sisteme Giriş için Kaydolun.</p>
+                        </div>
+                        @Html.ValidationSummary()
+
+                        <div class="login-form-body">
+                            <div class="form-gp exampleInputEmail1">
+                                @Html.LabelFor(x => x.adSoyad)
+                                @Html.EditorFor(x => x.adSoyad)
+                                <i class="ti-pencil"></i>
+                            </div>
+                            <div class="form-gp exampleInputEmail1">
+                                @Html.LabelFor(x => x.username)
+                                @Html.EditorFor(x => x.username)
+                                <i class="ti-user"></i>
+                            </div>
+                            <div class="form-gp exampleInputEmail1">
+                                @Html.LabelFor(x => x.email)
+                                @Html.EditorFor(x => x.email)
+                                <i class="ti-email"></i>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(x => x.adresMahalle)
+                                    @*<input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required="">*@
+                                    @Html.TextBoxFor(x => x.adresMahalle, new { @class="form-control", id="validationCustom01", placeholder="Mahalle"})
+                                </div>
+                                <br />
+                                <div class="col-md-6 mb-3">
+                                    @*<label for="validationCustom02">Last name</label>*@
+                                    @Html.LabelFor(x => x.adresCadde)
+                                    @Html.TextBoxFor(x=> x.adresCadde, new { @class = "form-control", id = "validationCustom01", placeholder = "Cadde/Sokak/KapıNo" })
+                                    @*<input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required="">*@
+                                </div>
+                                
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    @*<label for="validationCustom03">City</label>*@
+                                    @Html.LabelFor(x => x.ilce)
+                                    @Html.TextBoxFor(x => x.ilce, new { @class = "form-control", id = "validationCustom01", placeholder = "İlçe" })
+                                    @*<input type="text" class="form-control" id="validationCustom03" placeholder="City">*@
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @*<label for="validationCustom03">City</label>*@
+                                    @Html.LabelFor(x => x.il)
+                                    @Html.TextBoxFor(x => x.il, new { @class = "form-control", id = "validationCustom01", placeholder = "İl" })
+                                    @*<input type="text" class="form-control" id="validationCustom03" placeholder="City">*@
+                                </div>                                
+                            </div>
+                            
+                            <div class="form-gp exampleInputPassword1">
+                                @Html.LabelFor(x => x.password)
+                                @Html.EditorFor(x => x.password)
+                                <i class="ti-lock"></i>
+                            </div>
+                            <div class="form-gp exampleInputPassword1">
+                                @Html.LabelFor(x => x.passwordconfirm)
+                                @Html.EditorFor(x => x.passwordconfirm)
+                                <i class="ti-lock"></i>
+                            </div>
+                            <div class="submit-btn-area">
+                                <button id="form_submit" type="submit">KAYDOL <i class="ti-arrow-right"></i></button>
+                            </div>
+                            <div class="form-footer text-center mt-5">
+                                <p class="text-muted">Hesabın zaten var mı? <a href="/login">Giriş Yap</a></p>
+                            </div>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- login area end -->
+    <!-- jquery latest version -->
+    @Scripts.Render("~/projScripts");
+</body>
+</html>
